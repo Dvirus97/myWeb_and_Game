@@ -7,22 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="
+https://cdnjs.cloudflare.com/ajax/libs/
+font-awesome/4.7.0/css/font-awesome.min.css" />
     <style>
         #prevBtn,
         #nextBtn {
-            height: 30px;
+            /* line-height: 10px; */
+            font-family: Arial, Helvetica, sans-serif;
+            /* height: 30px; */
+            font-size: 100px;
+            border-style: hidden;
+            background-color: transparent;
+            position: relative;
+            bottom: 220px;
         }
 
         #imgContainer {
             position: relative;
+            /* width: 800px; */
+            /* height: 500px; */
+
+        }
+
+        img {
             width: 500px;
             height: 500px;
-            display: grid;
-            grid-template-columns: repeat(3, auto);
-            line-height: 200px;
-        }
-        img{
-            width: 100%;
+            /* position: relative; */
+            /* left: 50px; */
         }
     </style>
 </head>
@@ -41,9 +53,10 @@
     <h1>Home</h1>
 
     <div id="imgContainer">
-        <button type="button" id="prevBtn">←</button>
-        <img id="sliderImg" title="images" src="assets/images/burger1.jpg" />
-        <button type="button" id="nextBtn">→</button>
+        <button id="prevBtn">
+            < </button>
+                <img id="sliderImg" title="images" src="assets/images/burger1.jpg" />
+                <button id="nextBtn"> > </button>
     </div>
     <script src="index.js"></script>
 </body>

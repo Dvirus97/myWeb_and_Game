@@ -24,7 +24,7 @@ function startPage(){
 function shiftSlider() {
   setInterval(() => {
     setImageSrc(true);
-  }, 3000);
+  }, 2000);
 }
 
 function setImageSrc(isNext) {
