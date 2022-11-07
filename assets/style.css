@@ -1,0 +1,27 @@
+.navBar {
+  list-style-type: none;
+  padding: 5px;
+  margin: 0px;
+  overflow: hidden;
+  background: #444444;
+  width: 800px;
+}
+
+.navBarItem {
+  float: left;
+  display: block;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  border-right: 1px solid black;
+  min-width: 60px;
+}
+
+[yellow]{
+    color: yellow;
+}
+
+body{
+    font-family: cursive;
+}

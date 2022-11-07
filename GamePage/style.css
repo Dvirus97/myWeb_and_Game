@@ -1,0 +1,55 @@
+#board {
+  position: relative;
+  width: 600px;
+  height: 300px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+#gameContainer {
+  font-family: cursive;
+  display: inline-block;
+}
+#ball {
+  position: absolute;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+  background-color: black;
+}
+
+#racket {
+  position: absolute;
+  width: 80px;
+  height: 8px;
+  bottom: -1px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: black;
+}
+
+#score {
+  font-weight: bold;
+  font-size: 20px;
+  color: #ff0000;
+  margin-bottom: 20px;
+}
+
+#pauseText {
+  font-size: 50px;
+  position: relative;
+  top: 30%;
+  left: 150px;
+  display: none;
+}
+
+
+.shadowWin {
+  box-shadow: 2px 2px 2px blue, -2px -2px 2px blue, 2px -2px 2px blue,
+    -2px 2px 2px blue;
+}
+.shadowLose {
+  box-shadow: 2px 2px 2px red, -2px -2px 2px red, 2px -2px 2px red,
+    -2px 2px 2px red;
+}

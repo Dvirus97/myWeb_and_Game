@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        #prevBtn,
+        #nextBtn {
+            height: 30px;
+        }
+
+        #imgContainer {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            line-height: 200px;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul class="navBar">
+            <li><a class="navBarItem" yellow href="index.html">Home Page</a></li>
+            <li><a class="navBarItem" href="AboutPage/index.html">About</a></li>
+            <li><a class="navBarItem" href="GalleryPage/index.html">Gallery</a></li>
+            <li><a class="navBarItem" href="ContactPage/index.html">Contact Me</a></li>
+            <li><a class="navBarItem" href="GamePage/index.html">Game</a></li>
+        </ul>
+    </div>
+
+    <h1>Home</h1>
+
+    <div id="imgContainer">
+        <button type="button" id="prevBtn">←</button>
+        <img id="sliderImg" title="images" src="assets/images/burger1.jpg" />
+        <button type="button" id="nextBtn">→</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
