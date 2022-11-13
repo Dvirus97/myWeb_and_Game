@@ -1,46 +1,48 @@
 this.window.addEventListener("load", function () {
-  const ball = document.querySelector("#ball");
-  const board = document.querySelector("#board");
-  const racket = document.querySelector("#racket");
+  const ballDiv = document.querySelector("#ball");
+  const boardDiv = document.querySelector("#board");
+  const racketDiv = document.querySelector("#racket");
   const scoreLbl = document.querySelector("#score");
   const pauseText = document.querySelector("#pauseText");
 
-  function getStyleFloat(element, style) {
-    return parseFloat(window.getComputedStyle(element).getPropertyValue(style));
-  }
+  let racket = new GamePiece(racketDiv, (step = 10));
+  let ball = new GamePiece(ballDiv, (step = 1.3));
+  let board = new GamePiece(boardDiv);
 
-  const racketWidth = getStyleFloat(racket, "width");
-  const boardHeight = getStyleFloat(board, "height");
-  const boardWidth = getStyleFloat(board, "width");
-  const ballHeight = getStyleFloat(ball, "height");
-  const ballWidth = getStyleFloat(ball, "width");
+  let score = {
+    win: 0,
+    lose: 0,
+    uiElement: scoreLbl,
+    toString: function () {
+      return `win: ${this.win} | lose: ${this.lose}`;
+    },
+    show: function () {
+      this.uiElement.innerText = this.toString();
+    },
+  };
 
-  const ballStep = 1.3;
-  const racketStep = 10;
-  let winPoints = 0;
-  let losePoints = 0;
   let isPause = false;
   let intervalID;
 
   startGame();
   function startGame() {
-    updateScore();
+    score.show();
     this.window.addEventListener("keydown", keyboardDown);
     this.window.addEventListener("keydown", pauseDown);
     ballMove();
   }
   function keyboardDown(e) {
-    console.log(e.code);
-    const racketLeft = getStyleFloat(racket, "left");
+    // console.log(e.code);
+
     switch (e.code) {
       case "ArrowLeft":
-        if (racketLeft > 0) {
-          racket.style.left = racketLeft - racketStep + "px";
+        if (racket.x > 0) {
+          racket.x -= racket.step;
         }
         break;
       case "ArrowRight":
-        if (racketLeft + racketWidth < boardWidth) {
-          racket.style.left = racketLeft + racketStep + "px";
+        if (racket.x + racket.width < board.width) {
+          racket.x += racket.step;
         }
         break;
     }
@@ -54,44 +56,34 @@ this.window.addEventListener("load", function () {
   }
   function ballMove() {
     intervalID = setInterval(() => {
-      const ballTop = getStyleFloat(ball, "top");
-      if (ballTop + ballHeight >= boardHeight) {
+      if (ball.y + ball.height >= board.height) {
         chackCollision();
         return;
       }
-      ball.style.top = ballTop + ballStep + "px";
+      ball.y += ball.step;
     }, 10);
   }
   function chackCollision() {
-    const minRacket = getStyleFloat(racket, "left");
-    const maxRacket = minRacket + racketWidth;
-    const ballLeft = getStyleFloat(ball, "left");
-    if (ballLeft <= maxRacket && ballLeft >= minRacket) {
-      winPoints += 1;
-      racketShadow("shadowWin");
+    const racketMax = racket.x + racket.width;
+    if (racket.x <= ball.x && ball.x <= racketMax) {
+      score.win += 1;
+      racket.glow("blue");
     } else {
-      losePoints += 1;
-      racketShadow("shadowLose");
+      score.lose += 1;
+      racket.glow("red");
     }
-    updateScore();
+    score.show();
     resetBall();
   }
-  function updateScore() {
-    scoreLbl.innerHTML = `win- ${winPoints} : lose- ${losePoints}`;
-  }
+
   function resetBall() {
     function randint(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     }
-    ball.style.left = randint(0, boardWidth - ballWidth) + "px";
-    ball.style.top = 0 + "px";
+    ball.x = randint(0, board.width - ball.width);
+    ball.y = 0;
   }
-  function racketShadow(className) {
-    racket.classList.add(className);
-    setTimeout(() => {
-      racket.classList.remove(className);
-    }, 200);
-  }
+
   function pauseMenu() {
     if (isPause) {
       isPause = false;
@@ -105,5 +97,66 @@ this.window.addEventListener("load", function () {
       clearInterval(intervalID);
     }
   }
-
 });
+
+class GamePiece {
+  #x = 0;
+  #y = 0;
+  #width = 0;
+  #height = 0;
+  #element;
+  constructor(uiElement, step = 0) {
+    this.#element = uiElement;
+    this.#x = uiElement.offsetLeft;
+    this.#y = uiElement.offsetTop;
+    this.#width = uiElement.clientWidth;
+    this.#height = uiElement.clientHeight;
+    this.step = step;
+  }
+
+  get x() {
+    return this.#x;
+  }
+  set x(number) {
+    this.#x = number;
+    this.#element.style.left = number + "px";
+  }
+  get y() {
+    return this.#y;
+  }
+  set y(number) {
+    this.#y = number;
+    this.#element.style.top = number + "px";
+  }
+  get width() {
+    return this.#width;
+  }
+  set width(number) {
+    this.#width = number;
+    this.#element.style.width = number + "px";
+  }
+  get height() {
+    return this.#height;
+  }
+  set height(number) {
+    this.#height = number;
+    this.#element.style.height = number + "px";
+  }
+  toString() {
+    return `${this.x},${this.y},${this.width},${this.height}`;
+  }
+  glow(color) {
+    this.#element.style.boxShadow = `3px 3px 3px ${color}, 
+    -3px -3px 3px ${color}, 
+    3px -3px 3px ${color},
+    -3px 3px 3px ${color}`;
+    setTimeout(
+      () =>
+        (this.#element.style.boxShadow = `0px 0px 0px ${color}, 
+            -0px -0px 0px ${color}, 
+            0px -0px 0px ${color},
+            -0px 0px 0px ${color}`),
+      200
+    );
+  }
+}

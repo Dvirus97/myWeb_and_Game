@@ -3,7 +3,7 @@
   width: 600px;
   height: 300px;
   border-radius: 10px;
-  border: 2px solid black;
+  border: 4px solid black;
 }
 
 #gameContainer {
@@ -44,7 +44,7 @@
   display: none;
 }
 
-
+/* 
 .shadowWin {
   box-shadow: 2px 2px 2px blue, -2px -2px 2px blue, 2px -2px 2px blue,
     -2px 2px 2px blue;
@@ -52,4 +52,4 @@
 .shadowLose {
   box-shadow: 2px 2px 2px red, -2px -2px 2px red, 2px -2px 2px red,
     -2px 2px 2px red;
-}
+} */
