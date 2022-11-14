@@ -32,8 +32,6 @@ this.window.addEventListener("load", function () {
     ballMove();
   }
   function keyboardDown(e) {
-    // console.log(e.code);
-
     switch (e.code) {
       case "ArrowLeft":
         if (racket.x > 0) {
@@ -142,20 +140,16 @@ class GamePiece {
     this.#height = number;
     this.#element.style.height = number + "px";
   }
-  toString() {
-    return `${this.x},${this.y},${this.width},${this.height}`;
+  #shadowString(n, color) {
+    return `${n}px ${n}px ${n}px ${color}, 
+    -${n}px -${n}px ${n}px ${color}, 
+    ${n}px -${n}px ${n}px ${color},
+    -${n}px ${n}px ${n}px ${color}`;
   }
   glow(color) {
-    this.#element.style.boxShadow = `3px 3px 3px ${color}, 
-    -3px -3px 3px ${color}, 
-    3px -3px 3px ${color},
-    -3px 3px 3px ${color}`;
+    this.#element.style.boxShadow = this.#shadowString(3, color);
     setTimeout(
-      () =>
-        (this.#element.style.boxShadow = `0px 0px 0px ${color}, 
-            -0px -0px 0px ${color}, 
-            0px -0px 0px ${color},
-            -0px 0px 0px ${color}`),
+      () => (this.#element.style.boxShadow = this.#shadowString(0, color)),
       200
     );
   }
