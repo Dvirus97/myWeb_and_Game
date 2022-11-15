@@ -2,6 +2,8 @@ const sliderImg = document.querySelector("#sliderImg");
 const nextBtn = document.querySelector("#nextBtn");
 const prevBtn = document.querySelector("#prevBtn");
 
+prevBtn.innerHTML = "<";
+nextBtn.innerHTML = ">";
 console.log(sliderImg);
 
 let photosUri = [
@@ -15,15 +17,18 @@ let photosUri = [
 let count = 1;
 
 startPage();
-function startPage(){
-    shiftSlider();
-    nextBtn.addEventListener('click', ()=>{setImageSrc(true)});
-    prevBtn.addEventListener('click', ()=>{setImageSrc(false)});
-
+function startPage() {
+  shiftSlider();
+  nextBtn.addEventListener("click", () => {
+    setImageSrc((isNext = true));
+  });
+  prevBtn.addEventListener("click", () => {
+    setImageSrc((isNext = false));
+  });
 }
 function shiftSlider() {
   setInterval(() => {
-    setImageSrc(true);
+    setImageSrc((isNext = true));
   }, 2000);
 }
 
