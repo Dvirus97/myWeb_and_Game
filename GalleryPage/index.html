@@ -9,24 +9,35 @@
     <link rel="stylesheet" href="../assets/style.css">
     <style>
         .myImg {
-            height: 80px;
+            width: 30%;
             position: relative;
-            top: 10px;
-            margin: 10px;
+        }
+
+        #screenContainer {
+            position: relative;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
         }
 
         #screen {
             height: 600px;
-            margin: 20px;
-            position: absolute;
-            top: 50px;
-            left: 50px;
-
+            position: relative;
+            top: -300px;
         }
 
         .myImg:hover,
         #screen:hover {
             cursor: pointer;
+        }
+
+        #divImage {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -45,10 +56,21 @@
     <h1>Gallery</h1>
 
     <div style="position: relative;">
-        <div id="divImage"></div>
+        <div id="divImage">
+            <img class="myImg" src="../assets/images/burger4.jpg" alt="burger4">
+            <img class="myImg" src="../assets/images/burger1.jpg" alt="burger1">
+            <img class="myImg" src="../assets/images/burger2.jpg" alt="burger2">
+            <img class="myImg" src="../assets/images/burger3.jpg" alt="burger3">
+            <img class="myImg" src="../assets/images/burger5.jpg" alt="burger5">
+            <img class="myImg" src="../assets/images/burger6.jpg" alt="burger6">
+        </div>
 
-        <img id="screen" />
+
+        <div id="screenContainer">
+            <img id="screen" />
+        </div>
     </div>
+
     <script src="index.js"></script>
 </body>
 

@@ -10,12 +10,12 @@ let photosUri = [
   "../assets/images/burger5.jpg",
 ];
 
-for (let i = 0; i < photosUri.length; i++) {
-  divImage.innerHTML += `<img src="${photosUri[i]}" class="myImg" alt=""/>`;
-  if (i % 2) {
-    divImage.innerHTML += "<br>";
-  }
-}
+// for (let i = 0; i < photosUri.length; i++) {
+//   divImage.innerHTML += `<img src="${photosUri[i]}" class="myImg" alt=""/>`;
+//   if (i % 2) {
+//     divImage.innerHTML += "<br>";
+//   }
+// }
 
 const images = document.querySelectorAll(".myImg");
 
